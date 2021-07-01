@@ -196,9 +196,12 @@ public class ListBook extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Chọn dòng");
                 return;
             }
-            for (int i = in.length - 1; i >= 0; i--) {
-                lst.remove(in[i]);
-                model.removeRow(in[i]);
+            int chon = JOptionPane.showConfirmDialog(this, "Delete", "Delte", JOptionPane.YES_NO_OPTION);
+            if (chon == JOptionPane.YES_OPTION) {
+                for (int i = in.length - 1; i >= 0; i--) {
+                    lst.remove(in[i]);
+                    model.removeRow(in[i]);
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Error");
