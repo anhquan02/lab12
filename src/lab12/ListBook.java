@@ -5,6 +5,7 @@
  */
 package lab12;
 
+import database.BookDBDAO;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,15 +19,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListBook extends javax.swing.JFrame {
 
-    ArrayList<Book> lst;
     DefaultTableModel model;
-
+    BookDAO manager = new BookDAO();
+    BookDBDAO bookDAO= new BookDBDAO();
+    
     /**
      * Creates new form ListBook
      */
     public ListBook() {
         initComponents();
-        lst = new ArrayList<>();
         model = (DefaultTableModel) tbph16428.getModel();
         setLocationRelativeTo(null);
         khoiTao();
@@ -35,11 +36,7 @@ public class ListBook extends javax.swing.JFrame {
     public void khoiTao() {
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            lst.add(new Book(1, "IT", 12, new BigDecimal(100000), f.parse("2006-6-12")));
-            lst.add(new Book(2, "SER", 11, new BigDecimal(150000), f.parse("2008-3-16")));
-            lst.add(new Book(3, "DIG", 16, new BigDecimal(120000), f.parse("2006-1-12")));
-            lst.add(new Book(4, "MAR", 32, new BigDecimal(80000), f.parse("2012-3-12")));
-            lst.add(new Book(5, "IT", 13, new BigDecimal(120000), f.parse("2011-8-12")));
+            manager.setList(bookDAO.arr());
             fillToTable();
         } catch (Exception e) {
             return;
@@ -48,7 +45,7 @@ public class ListBook extends javax.swing.JFrame {
 
     public void fillToTable() {
         model.setRowCount(0);
-        for (Book x : lst) {
+        for (Book x : manager.arr()) {
             model.addRow(new Object[]{x.getID(), x.getName(), x.getQuantities(), x.getCost(), x.getStringDate()});
         }
     }
@@ -199,7 +196,8 @@ public class ListBook extends javax.swing.JFrame {
             int chon = JOptionPane.showConfirmDialog(this, "Delete", "Delte", JOptionPane.YES_NO_OPTION);
             if (chon == JOptionPane.YES_OPTION) {
                 for (int i = in.length - 1; i >= 0; i--) {
-                    lst.remove(in[i]);
+                    bookDAO.remove(in[i]);
+                    manager.remove(in[i]);
                     model.removeRow(in[i]);
                 }
             }

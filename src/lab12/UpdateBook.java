@@ -167,7 +167,7 @@ public class UpdateBook extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void showDetail() {
-        book = frame.lst.get(frame.in[0]);
+        book = frame.manager.arr().get(frame.in[0]);
         txtID.setText(book.getID() + "");
         txtCost.setText(book.getCost() + "");
         txtName.setText(book.getName());
@@ -177,12 +177,12 @@ public class UpdateBook extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
-            if ( XHelper.checkRong(txtName) || XHelper.checkRong(txtQuantities) || XHelper.checkRong(txtCost) || XHelper.checkRong(txtPublishDay)) {
+            if (XHelper.checkRong(txtName) || XHelper.checkRong(txtQuantities) || XHelper.checkRong(txtCost) || XHelper.checkRong(txtPublishDay)) {
                 return;
             }
             if (!XHelper.checkSoNguyen(txtQuantities) || !XHelper.checkSoNguyen(txtCost)) {
                 return;
-            }            
+            }
             String name = txtName.getText();
             int quantites = Integer.parseInt(txtQuantities.getText());
             BigDecimal cost = new BigDecimal(txtCost.getText());
@@ -199,10 +199,9 @@ public class UpdateBook extends javax.swing.JFrame {
                 JOptionPane.showInputDialog("Ngày tương lai :))");
                 return;
             }
-            book.setCost(cost);
-            book.setDate(date);
-            book.setName(name);
-            book.setQuantities(quantites);
+            Book bk = new Book(book.getID(), name, quantites, cost, date);
+            this.frame.bookDAO.update(bk,this.frame.index);
+            this.frame.manager.update(bk, this.frame.index);
             this.frame.fillToTable();
             JOptionPane.showMessageDialog(rootPane, "Successfull");
             this.dispose();

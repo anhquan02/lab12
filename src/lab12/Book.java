@@ -6,6 +6,7 @@
 package lab12;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -61,7 +62,9 @@ public class Book {
     }
 
     public void setCost(BigDecimal cost) {
-        this.cost = cost;
+        DecimalFormat f = new DecimalFormat("###");
+        String gia =f.format(cost);
+        this.cost = new BigDecimal(gia);
     }
 
     public Date getDate() {
