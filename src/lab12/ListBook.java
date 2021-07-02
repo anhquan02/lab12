@@ -19,9 +19,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListBook extends javax.swing.JFrame {
 
+
     DefaultTableModel model;
     BookDAO manager = new BookDAO();
-    BookDBDAO bookDAO= new BookDBDAO();
+    BookDBDAO bookDAO= new BookDBDAO();    
+    ArrayList<Book> lst;
+    DefaultTableModel model;
+
     
     /**
      * Creates new form ListBook
