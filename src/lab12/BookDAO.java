@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class BookDAO implements ManagerDAO{
 
     public BookDAO() {
+        
     }
     
     ArrayList<Book>lst = new ArrayList<>();
@@ -40,5 +41,7 @@ public class BookDAO implements ManagerDAO{
     public ArrayList<Book> arr() {
         return this.lst;
     }
-    
+    public void setList(ArrayList<Book>lst){
+        this.lst=lst;
+    }
 }

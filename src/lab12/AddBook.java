@@ -6,6 +6,7 @@
 package lab12;
 
 import XHelper.XHelper;
+import database.BookDBDAO;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -170,7 +171,7 @@ public class AddBook extends javax.swing.JFrame {
                 return;
             }
             int id= Integer.parseInt(txtquanlaph16429.getText());
-            for(Book x : frame.lst){
+            for(Book x : frame.manager.arr()){
                 if(x.getID()==id){
                     txtquanlaph16429.requestFocus();
                     JOptionPane.showMessageDialog(rootPane, "Trùng");
@@ -194,8 +195,9 @@ public class AddBook extends javax.swing.JFrame {
                 return;
             }
             Book book = new Book(id, name, quantites, cost, date);
-            this.frame.lst.add(book);
+            this.frame.manager.add(book);
             this.frame.fillToTable();
+            new BookDBDAO().add(book);
             JOptionPane.showMessageDialog(rootPane, "Successfull");
             this.dispose();
         } catch (Exception e) {
