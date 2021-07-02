@@ -37,7 +37,7 @@ public class XHelper {
                 return false;
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Làm ơn điền số nguyên");
+            JOptionPane.showMessageDialog(null, "Làm ơn điền số nguyên dương");
             return false;
         }
     }
