@@ -18,16 +18,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Mypc
  */
 public class ListBook extends javax.swing.JFrame {
-<<<<<<< HEAD
     
-    ArrayList<Book> lst;
-    DefaultTableModel model;
-=======
-
     DefaultTableModel model;
     BookDAO manager = new BookDAO();
-    BookDBDAO bookDAO= new BookDBDAO();
->>>>>>> remotes/origin/Quan
+    BookDBDAO bookDAO= new BookDBDAO();    
+    ArrayList<Book> lst;
+
     
     /**
      * Creates new form ListBook
